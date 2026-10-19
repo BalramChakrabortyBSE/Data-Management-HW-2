@@ -24,3 +24,16 @@ uv run streamlit run solution/dashboard.py
 The build reads `data/f1.duckdb` and the SQL files in `solution/` to create
 `warehouse.duckdb`. These commands require the course project support files
 (`pyproject.toml`, `scripts/`, and `data/`) in addition to the `solution/` files.
+
+## Assignment test results
+
+The test scenarios and their recorded results are in
+[`solution/test_scenarios.xlsx`](solution/test_scenarios.xlsx). The checks were
+run in the full course project workspace: all 12 scenarios passed, including
+the required row count, point totals, SQL answers, dashboard requirements, and
+Part 5 explanations.
+
+The test runner is [`solution/test_assignment.py`](solution/test_assignment.py).
+To rerun it, use the full course project workspace with its `data/f1.duckdb`,
+`scripts/build.py`, and Python dependencies; those support files are not included
+in this solution-only repository.

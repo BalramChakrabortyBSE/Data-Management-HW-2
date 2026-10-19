@@ -70,6 +70,6 @@ The result does not show almost no position gains: Monaco averages 1.125 places 
 
 ## Part 5
 
-1. Toro Rosso, AlphaTauri and RB:
+1. Toro Rosso scored 331 points, AlphaTauri scored 306, and RB F1 Team scored 128 over 2014–2025. They appear separately because each entered name has its own `team_key`. Adding a shared `team_id` (or a team-alias dimension that maps each name to the same canonical team) to `dim_team` would let queries group their points together.
 
-2. One row per pit stop:
+2. Adding one row per pit stop to `fact_result` would change its grain from one row per driver per race to one row per pit stop. A driver's race points would then be repeated for every stop and would be overcounted when summed; entries with no stops would have no fact row at all. Pit-stop durations should instead go in a separate fact table at one row per pit stop, linked to the race, driver, and team dimensions.
