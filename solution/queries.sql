@@ -6,13 +6,13 @@ SELECT
     count(*) AS races
 FROM fact_result f
 JOIN dim_driver d USING (driver_key)
-JOIN dim_race r USING (race_key)
 GROUP BY d.driver_key, d.driver_name
 ORDER BY wins DESC, podiums DESC, d.driver_name
 LIMIT 10;
 
 
 -- Part 3, question 2
+-- Exclude grid = 0 entries because they do not represent a valid starting grid position.
 SELECT
     r.circuit_name,
     r.country,
@@ -20,8 +20,7 @@ SELECT
     avg(f.grid - f.finish_position) AS avg_places_gained
 FROM fact_result f
 JOIN dim_race r USING (race_key)
-WHERE f.is_classified
-  AND f.grid > 0
+where f.is_classified and f.grid > 0
 GROUP BY r.circuit_name, r.country
 HAVING count(DISTINCT r.race_key) >= 5
 ORDER BY avg_places_gained DESC, r.circuit_name;

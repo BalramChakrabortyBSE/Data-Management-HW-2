@@ -45,7 +45,7 @@
 | Circuit Park Zandvoort | Netherlands | 5 | 0.580 |
 
 Monaco:
-The result does not show almost no position gains: Monaco averages 1.125 places gained, around the middle of this list. However, grid-to-finish position change is only a proxy for overtaking; retirements and other changes in the classified order can affect it too.
+No. Monaco averages 1.125 places gained, 13th of 22 circuits (tied with Bahrain), so it is mid-table rather than near zero. Grid-to-finish change is only a proxy for overtaking: classified drivers also gain places when cars ahead retire or when pit-stop strategy reshuffles the order, so some of those gains happen without an on-track pass.
 
 ### Question 3
 
@@ -63,6 +63,18 @@ The result does not show almost no position gains: Monaco averages 1.125 places 
 | Sauber | 4 | 87 |
 
 (a) What went wrong: The results table's grain is one row per driver per race, but joining it to pit stops changes the joined grain to one row per pit stop. That repeats each result's points once for every stop, inflating the summed points; Red Bull did not actually score 966 points.
+
+(b) Corrected query against the star:
+
+```sql
+SELECT t.team_name AS team, sum(f.points) AS points, sum(f.pit_stops) AS pit_stops
+FROM fact_result f
+JOIN dim_team t USING (team_key)
+JOIN dim_race r USING (race_key)
+WHERE r.season = 2024
+GROUP BY t.team_key, t.team_name
+ORDER BY points DESC;
+```
 
 ## Part 4
 
