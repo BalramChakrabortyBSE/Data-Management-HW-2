@@ -45,7 +45,7 @@
 | Circuit Park Zandvoort | Netherlands | 5 | 0.580 |
 
 Monaco:
-No. Monaco averages 1.125 places gained, 13th of 22 circuits (tied with Bahrain), so it is mid-table rather than near zero. Grid-to-finish change is only a proxy for overtaking: classified drivers also gain places when cars ahead retire or when pit-stop strategy reshuffles the order, so some of those gains happen without an on-track pass.
+No. Monaco averages 1.125 places gained, 13th of 22 circuits (tied with Bahrain), so it is mid-table rather than near zero; grid-to-finish change is only a proxy for overtaking, because classified drivers also gain places when cars ahead retire or pit strategies reshuffle the order.
 
 ### Question 3
 

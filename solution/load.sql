@@ -1,7 +1,7 @@
--- Your load. scripts/build.py runs this file second, after star_schema.sql.
+-- Load dimensions and facts from the attached source database.
 -- The source database is attached as `src`: read from src.results, src.races, ...
 
--- Given, as an example.
+-- One row per race, including circuit attributes for circuit-level analysis.
 INSERT INTO dim_race
 SELECT r.race_id, r.season, r.round, r.name, r.date, c.name, c.country
 FROM src.races r
@@ -24,8 +24,9 @@ SELECT team_id, name, nationality
 FROM src.teams;
 
 
--- fact_result: one row per row of src.results. Hint: count the pit stops per entry in
--- a subquery first, then join that to the results, like the payments in lab 5.
+-- fact_result: one row per result. Pit stops are counted per entry first, so the join
+-- keeps one row per result (joining the raw stops would multiply rows). Entries with no
+-- stops get 0.
 INSERT INTO fact_result (
     race_key,
     driver_key,

@@ -12,7 +12,8 @@ LIMIT 10;
 
 
 -- Part 3, question 2
--- Exclude grid = 0 entries because they do not represent a valid starting grid position.
+-- Classified drivers only; grid = 0 means a pit-lane start, which has no grid slot to compare against.
+-- Classified drivers only: grid = 0 means a pit-lane start, which has no grid slot to compare against.
 SELECT
     r.circuit_name,
     r.country,
@@ -20,7 +21,7 @@ SELECT
     avg(f.grid - f.finish_position) AS avg_places_gained
 FROM fact_result f
 JOIN dim_race r USING (race_key)
-where f.is_classified and f.grid > 0
+WHERE f.is_classified AND f.grid > 0
 GROUP BY r.circuit_name, r.country
 HAVING count(DISTINCT r.race_key) >= 5
 ORDER BY avg_places_gained DESC, r.circuit_name;
