@@ -28,7 +28,11 @@ def query(sql: str, params: list | None = None) -> pd.DataFrame:
         return con.execute(sql, params or []).df()
 
 
-st.set_page_config(page_title="F1 2014–2025", layout="wide")
+st.set_page_config(
+    page_title="F1 2014–2025",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 st.title("Formula 1, 2014–2025")
 
 st.subheader("McLaren scored the most points in 2024 with 609, ahead of Ferrari's 595.")
@@ -55,6 +59,7 @@ st.bar_chart(wins, x="season", y="wins", color="team")
 
 
 # --- Your chart ----------------------------------------------------------------
+# Who scored the most across the slider's seasons, and how did each season go?
 st.header("Season points for the five leading drivers")
 driver_points = query(
     """
